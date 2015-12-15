@@ -4,7 +4,7 @@
 ;;; -*- End Of Bookmark File Format Version Stamp -*-
 (("org-capture-last-stored"
  (filename . "~/Dropbox/org/want_read.org")
- (front-context-string . "- [ ] г. харди Д")
- (rear-context-string . "ные рассуждение\n")
- (position . 286))
+ (front-context-string . "- [ ] «Введение ")
+ (rear-context-string . "Владимира Леви.\n")
+ (position . 324))
 )

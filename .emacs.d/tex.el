@@ -1,11 +1,11 @@
-(load-file "/usr/share/emacs/site-lisp/auctex.el")
-(load-file "/usr/share/emacs/site-lisp/auctex/preview.elc")
+;(load-file "/usr/share/emacs/site-lisp/auctex.el")
+;(load-file "/usr/share/emacs/site-lisp/auctex/preview.elc")
 
 (when (require 'smartparens nil 'noerror)
   (require 'smartparens-latex))
 
 ;; ;;; make AUCTeX aware of style files and multi-file documents
-(add-hook 'LaTeX-mode-hook
+(add-hook 'LaTeX-mod-hook
           '(lambda ()
              (setq LaTeX-syntactic-comment t)
              (setq TeX-auto-untabify t)
@@ -14,7 +14,7 @@
              (setq TeX-auto-save t) ; recommended in quickstart
              (setq TeX-parse-self t) ; recommended in quickstart
              (setq font-latex-verbatim-environments '("verbatim" "verbatim*" "lstlisting"))
-             (setenv "TEXINPUTS" ".:/home/xf0e/doc/.latex/:")
+             (setenv "TEXINPUTS" ".:/home/grrr/doc/.latex/:")
              ))
 
 ;; ;;RefTeX--------------------------------------
@@ -53,7 +53,6 @@
 ;;(add-hook 'TeX-mode-hook 'visual-line-mode)
 ;;;highligt misspelled words
 (add-hook 'TeX-mode-hook 'flyspell-mode)
-(setq ispell-dictionary "de_DE.multi")
 
 (add-hook 'TeX-mode-hook (lambda()
                              (add-to-list  'TeX-command-list '("XeLaTeX" "xelatex -interaction=nonstopmode %s" TeX-run-command t t :help "Run xelatex") t)
@@ -141,3 +140,19 @@
 (defun ome-cdlatex-mode-setup ()
   (add-hook 'LaTeX-mode-hook 'turn-on-cdlatex)
   (add-hook 'latex-mode-hook 'turn-on-cdlatex))
+
+
+
+;Improving LaTeX equations with font-lock
+(defun endless/unimportant-latex-face
+  '((t :height 0.6
+       :inherit font-lock-comment-face))
+  "Face used on less relevant math commands.")
+
+(font-lock-add-keywords
+ 'latex-mode
+ `((,(rx "\\" (or (any ",.!;")
+                  (and (or "left" "right")
+                       symbol-end)))
+    0 'endless/unimportant-latex-face prepend))
+ 'end)

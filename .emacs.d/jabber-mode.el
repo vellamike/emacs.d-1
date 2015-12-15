@@ -16,8 +16,8 @@
 
 (setq  jabber-account-list
     (quote (
-            ("0xbadc0de@jabber.ru/emacs" (:password . "") (:connection-type . ssl) )
-;            ("hope@jabbim.com/emacs" (:password . "") )
+            ("0xbadc0de@jabber.ru/emacs" (:password . "W0jVLx5Bjab") (:connection-type . ssl) )
+;            ("hope@jabbim.com/emacs" (:password . "whocares") )
            )
     )
 )
